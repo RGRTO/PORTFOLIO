@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nayan Naveen | Python Django & Full Stack Developer | AI & Cybersecurity</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="title" content="Nayan Naveen | Python Django & Full Stack Developer | AI & Cybersecurity" />
+    <meta name="description" content="Personal portfolio of Nayan Naveen, Python Django & Full Stack Developer based in Kerala, India. Specializing in Django, REST APIs, AI, Cybersecurity, and interactive web applications." />
+    <meta name="author" content="Nayan Naveen" />
+    <meta name="theme-color" content="#030712" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              display: ['Space Grotesk', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- Flat Dark Aesthetic Styles (No Gradients) -->
+    <style>
+      body {
+        background-color: #030712;
+        color: #f8fafc;
+        overflow-x: hidden;
+      }
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #030712; }
+      ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 9999px; }
+      ::-webkit-scrollbar-thumb:hover { background: #06b6d4; }
+
+      /* Flat Solid Dark Cards (No Gradients) */
+      .flat-card {
+        background-color: #0b0f19;
+        border: 1px solid #1e293b;
+      }
+      .flat-card-hover {
+        transition: all 0.25s ease-in-out;
+      }
+      .flat-card-hover:hover {
+        background-color: #111827;
+        border-color: #06b6d4;
+        transform: translateY(-3px);
+      }
+      .flat-pill {
+        background-color: #111827;
+        border: 1px solid #1e293b;
+      }
+
+      /* Animations */
+      @keyframes floatSlow {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-6px); }
+      }
+      .animate-float {
+        animation: floatSlow 4s ease-in-out infinite;
+      }
+    </style>
+
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
+  </head>
+  <body class="bg-[#030712] text-slate-100 antialiased selection:bg-cyan-500 selection:text-black min-h-screen relative">
+
+    <!-- Sticky Navigation Header (Solid Flat Colors, No Gradients) -->
+    <header id="header-nav" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 py-4 px-6 flex items-center justify-between bg-[#030712] border-b border-slate-800">
+      <a href="#" class="flex items-center gap-3 font-display font-bold text-xl text-white group">
+        <div class="w-10 h-10 rounded-xl bg-cyan-500 text-black flex items-center justify-center font-mono text-xs font-black group-hover:scale-105 transition-transform">
+          NN
+        </div>
+        <div class="flex flex-col">
+          <span class="text-white group-hover:text-cyan-400 transition-colors font-bold">Nayan Naveen</span>
+          <span class="text-[10px] font-mono text-cyan-400 uppercase tracking-widest">Python & Full Stack</span>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-1 flat-pill px-4 py-1.5 rounded-full border border-slate-800 text-xs">
+        <a href="#about" class="px-3.5 py-1.5 text-slate-300 hover:text-cyan-400 hover:bg-slate-800 rounded-full transition-all">About</a>
+        <a href="#experience" class="px-3.5 py-1.5 text-slate-300 hover:text-cyan-400 hover:bg-slate-800 rounded-full transition-all">Experience</a>
+        <a href="#projects" class="px-3.5 py-1.5 text-slate-300 hover:text-cyan-400 hover:bg-slate-800 rounded-full transition-all">Projects</a>
+        <a href="#skills" class="px-3.5 py-1.5 text-slate-300 hover:text-cyan-400 hover:bg-slate-800 rounded-full transition-all">Skills</a>
+        <a href="#education" class="px-3.5 py-1.5 text-slate-300 hover:text-cyan-400 hover:bg-slate-800 rounded-full transition-all">Education</a>
+        <a href="#contact" class="px-3.5 py-1.5 text-slate-300 hover:text-cyan-400 hover:bg-slate-800 rounded-full transition-all">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <!-- Interactive Terminal Easter Egg Trigger -->
+        <button
+          onclick="toggleTerminalModal()"
+          class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono bg-purple-950/60 border border-purple-800 text-purple-300 hover:text-white hover:border-purple-500 transition-all"
+          title="Open Secret Python Terminal"
+        >
+          <span>⚡ Terminal</span>
+        </button>
+
+        <button
+          onclick="toggleCommandPalette()"
+          class="px-3 py-1.5 rounded-xl text-xs font-mono bg-slate-900 border border-slate-800 text-slate-300 hover:text-cyan-400 hover:border-cyan-500/50 transition-all"
+        >
+          Search <kbd class="px-1.5 py-0.5 text-[10px] bg-slate-800 rounded border border-slate-700 text-slate-300">Ctrl+K</kbd>
+        </button>
+
+        <button
+          onclick="toggleResumeModal()"
+          class="px-4 py-1.5 rounded-xl text-xs font-bold bg-cyan-500 hover:bg-cyan-400 text-black transition-all hover:scale-105"
+        >
+          Resume
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="relative z-10">
+
+      <!-- Hero Section -->
+      <section class="pt-36 pb-20 px-4 text-center max-w-5xl mx-auto flex flex-col items-center">
+        
+        <!-- Live Status Pill -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full flat-pill border border-cyan-500/40 text-cyan-400 text-xs font-mono mb-6 animate-float">
+          <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 -ml-5"></span>
+          <span>Available for Python, Django & Full Stack Roles</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold font-display text-white mb-4 tracking-tight">
+          Hi, I'm <span class="text-cyan-400">Nayan Naveen</span> ⚡
+        </h1>
+
+        <div class="text-lg sm:text-2xl font-semibold text-slate-200 mb-6 font-display flex flex-wrap justify-center gap-2 items-center">
+          <span class="text-cyan-400 font-bold">Python Django Developer</span>
+          <span class="text-slate-600 hidden sm:inline">•</span>
+          <span class="text-purple-400 font-bold">Full Stack Developer</span>
+          <span class="text-slate-600 hidden sm:inline">•</span>
+          <span class="text-emerald-400 font-bold">AI & Cybersecurity Enthusiast</span>
+        </div>
+
+        <p class="max-w-2xl text-slate-300 text-base sm:text-lg leading-relaxed mb-8">
+          I build production-ready Python Django web systems, high-speed REST APIs, and responsive frontends that don't break under pressure. Fueled by clean code, AI automation, and cybersecurity. ☕
+        </p>
+
+        <!-- Fun Status Badges (Solid Flat Colors) -->
+        <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-slate-300 mb-10">
+          <span class="px-3 py-1 rounded-full bg-cyan-950 border border-cyan-800 text-cyan-300">🐛 0 Uncaught Bugs</span>
+          <span class="px-3 py-1 rounded-full bg-purple-950 border border-purple-800 text-purple-300">🐍 100% Django Powered</span>
+          <span class="px-3 py-1 rounded-full bg-emerald-950 border border-emerald-800 text-emerald-300">🛡️ Security Mindset</span>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-4 mb-14">
+          <a
+            href="#projects"
+            class="px-6 py-3.5 rounded-xl text-sm font-bold text-black bg-cyan-400 hover:bg-cyan-300 shadow-lg shadow-cyan-950/50 transition-all hover:scale-105"
+          >
+            Explore Projects →
+          </a>
+          
+          <a
+            href="#contact"
+            class="px-6 py-3.5 rounded-xl text-sm font-medium text-slate-200 flat-card flat-card-hover border border-slate-800 hover:text-cyan-400"
+          >
+            Get In Touch
+          </a>
+
+          <!-- Fun Interactive High-Five Button -->
+          <button
+            onclick="giveHighFive()"
+            class="px-5 py-3.5 rounded-xl text-sm font-medium text-yellow-300 flat-card flat-card-hover border border-yellow-800/60 hover:border-yellow-500 transition-all flex items-center gap-2"
+            title="Click to give a High Five!"
+          >
+            <span>High Five 👏</span>
+            <span id="high-five-count" class="px-2 py-0.5 rounded-full text-xs font-mono bg-yellow-950 text-yellow-400 font-bold border border-yellow-800">42</span>
+          </button>
+        </div>
+
+        <!-- Quick Stats Cards (Solid Flat Backgrounds) -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-4xl">
+          <div class="flat-card flat-card-hover p-6 rounded-2xl border border-slate-800 text-center">
+            <div class="text-3xl font-extrabold font-display text-white">
+              <span class="text-cyan-400">8.0</span>
+              <span class="text-xs font-mono text-cyan-500 ml-1">/ 10</span>
+            </div>
+            <div class="text-xs text-slate-400 mt-1 font-mono font-medium uppercase tracking-wider">BCA CGPA</div>
+          </div>
+          <div class="flat-card flat-card-hover p-6 rounded-2xl border border-slate-800 text-center">
+            <div class="text-3xl font-extrabold font-display text-white">
+              <span class="text-cyan-400">4</span>
+              <span class="text-xs font-mono text-cyan-500 ml-1">+</span>
+            </div>
+            <div class="text-xs text-slate-400 mt-1 font-mono font-medium uppercase tracking-wider">Major Projects</div>
+          </div>
+          <div class="flat-card flat-card-hover p-6 rounded-2xl border border-slate-800 text-center">
+            <div class="text-3xl font-extrabold font-display text-white">
+              <span class="text-cyan-400">15</span>
+              <span class="text-xs font-mono text-cyan-500 ml-1">+</span>
+            </div>
+            <div class="text-xs text-slate-400 mt-1 font-mono font-medium uppercase tracking-wider">Tech Stack</div>
+          </div>
+          <div class="flat-card flat-card-hover p-6 rounded-2xl border border-slate-800 text-center">
+            <div class="text-3xl font-extrabold font-display text-white">
+              <span class="text-cyan-400">250</span>
+              <span class="text-xs font-mono text-cyan-500 ml-1">+</span>
+            </div>
+            <div class="text-xs text-slate-400 mt-1 font-mono font-medium uppercase tracking-wider">Code Commits</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="py-24 px-4 max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full flat-pill border border-slate-800 text-cyan-400 text-xs font-mono mb-3">
+            <span>01. ABOUT ME</span>
+          </div>
+          <h2 class="text-3xl sm:text-5xl font-bold font-display text-white tracking-tight">
+            Architecting Solutions with <span class="text-cyan-400">Code & Security</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-7 flat-card p-8 sm:p-10 rounded-3xl border border-slate-800 space-y-4 text-slate-200 text-sm sm:text-base leading-relaxed">
+            <h3 class="text-xl font-bold text-white font-display mb-4">Engineering Scalable Web Solutions with Python, Django, AI & Modern Frontend Stack</h3>
+            <p>I am a results-driven Python Django Developer and Full Stack Developer based in Kerala, India. My passion lies in building robust, production-ready web applications, designing high-throughput REST APIs, and combining backend stability with modern interactive frontends.</p>
+            <p>With hands-on experience developing decentralized expense platforms, scalable social platforms, and feature-rich e-commerce ecosystems, I bring a strong foundation in database architecture, user authentication, and Git workflows.</p>
+            <p>Beyond traditional web development, I am deeply fascinated by Artificial Intelligence and Cybersecurity, actively exploring intelligent automation and secure application protocols. My project portfolio also spans cutting-edge WebAR solutions using AR.js and QR-based interaction flows.</p>
+          </div>
+
+          <div class="lg:col-span-5 space-y-4">
+            <div class="flat-card flat-card-hover p-6 rounded-2xl border border-slate-800">
+              <h4 class="font-bold text-cyan-400 font-display text-base mb-1">Python & Django Mastery 🐍</h4>
+              <p class="text-xs text-slate-400 leading-relaxed">Designing clean Django models, scalable REST APIs, session/JWT auth, and query optimization.</p>
+            </div>
+            <div class="flat-card flat-card-hover p-6 rounded-2xl border border-slate-800">
+              <h4 class="font-bold text-purple-400 font-display text-base mb-1">Full Stack Systems 💻</h4>
+              <p class="text-xs text-slate-400 leading-relaxed">End-to-end web application development connecting responsive frontends with solid backends.</p>
+            </div>
+            <div class="flat-card flat-card-hover p-6 rounded-2xl border border-slate-800">
+              <h4 class="font-bold text-emerald-400 font-display text-base mb-1">AI Integration & Automation 🤖</h4>
+              <p class="text-xs text-slate-400 leading-relaxed">Exploring machine learning concepts, natural language workflows, and smart automation.</p>
+            </div>
+            <div class="flat-card flat-card-hover p-6 rounded-2xl border border-slate-800">
+              <h4 class="font-bold text-rose-400 font-display text-base mb-1">Cybersecurity Mindset 🛡️</h4>
+              <p class="text-xs text-slate-400 leading-relaxed">Application security standards, OWASP guidelines, secure authentication, and data integrity.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience Section -->
+      <section id="experience" class="py-24 px-4 max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full flat-pill border border-slate-800 text-cyan-400 text-xs font-mono mb-3">
+            <span>02. EXPERIENCE & IMPACT</span>
+          </div>
+          <h2 class="text-3xl sm:text-5xl font-bold font-display text-white tracking-tight">
+            Proven Industry <span class="text-cyan-400">Development Journey</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-4 flex flex-col gap-3">
+            <button
+              id="exp-btn-webandcrafts"
+              onclick="switchExpTab('webandcrafts')"
+              class="w-full text-left p-5 rounded-2xl border transition-all bg-cyan-950/80 border-cyan-500 text-white"
+            >
+              <div class="text-xs font-mono text-cyan-400 uppercase font-bold">Internship</div>
+              <div class="text-base font-bold text-white font-display mt-0.5">Webandcrafts</div>
+              <div class="text-xs text-slate-300">Python Django Developer Intern</div>
+            </button>
+
+            <button
+              id="exp-btn-ar"
+              onclick="switchExpTab('ar')"
+              class="w-full text-left p-5 rounded-2xl border transition-all flat-card border-slate-800 text-slate-400 hover:text-white"
+            >
+              <div class="text-xs font-mono text-cyan-400 uppercase font-bold">Independent Development</div>
+              <div class="text-base font-bold text-white font-display mt-0.5">Augmented Reality Project</div>
+              <div class="text-xs text-slate-400">AR Developer</div>
+            </button>
+          </div>
+
+          <!-- Webandcrafts Details -->
+          <div id="exp-panel-webandcrafts" class="lg:col-span-8 flat-card p-8 sm:p-10 rounded-3xl border border-slate-800 space-y-6">
+            <div>
+              <h3 class="text-2xl font-bold font-display text-white">Python Django Developer Intern <span class="text-cyan-400">@ Webandcrafts</span></h3>
+              <div class="text-xs font-mono text-slate-400 mt-2">2 Months • Kerala, India</div>
+            </div>
+            <p class="text-sm sm:text-base text-slate-200 leading-relaxed">Built production-ready web applications using Python, Django, REST APIs, and modern frontend techniques within an agile collaborative development environment.</p>
+            <div class="space-y-2.5">
+              <div class="text-xs font-mono text-cyan-400 uppercase tracking-wider mb-2 font-bold">Key Deliverables:</div>
+              <div class="flex items-start gap-2 text-xs sm:text-sm text-slate-200"><span class="text-cyan-400 font-bold">✓</span><span>Engineered backend architecture for a Blockchain Expense Tracker, a Twitter Clone, and a feature-complete E-Commerce platform.</span></div>
+              <div class="flex items-start gap-2 text-xs sm:text-sm text-slate-200"><span class="text-cyan-400 font-bold">✓</span><span>Designed secure RESTful API endpoints, user authentication modules (JWT/Session), and relational database schemas (MySQL & SQLite).</span></div>
+              <div class="flex items-start gap-2 text-xs sm:text-sm text-slate-200"><span class="text-cyan-400 font-bold">✓</span><span>Collaborated closely with cross-functional teams using Git & GitHub for version control, code reviews, and feature branch deployments.</span></div>
+              <div class="flex items-start gap-2 text-xs sm:text-sm text-slate-200"><span class="text-cyan-400 font-bold">✓</span><span>Integrated frontend UI components with backend APIs ensuring efficient state synchronization and fast page rendering.</span></div>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="px-3 py-1 rounded-lg text-xs font-mono bg-slate-900 text-cyan-300 border border-slate-800">Python</span>
+              <span class="px-3 py-1 rounded-lg text-xs font-mono bg-slate-900 text-cyan-300 border border-slate-800">Django</span>
+              <span class="px-3 py-1 rounded-lg text-xs font-mono bg-slate-900 text-cyan-300 border border-slate-800">REST APIs</span>
+              <span class="px-3 py-1 rounded-lg text-xs font-mono bg-slate-900 text-cyan-300 border border-slate-800">MySQL</span>
+              <span class="px-3 py-1 rounded-lg text-xs font-mono bg-slate-900 text-cyan-300 border border-slate-800">SQLite</span>
+              <span class="px-3 py-1 rounded-lg text-xs font-mono bg-slate-900 text-cyan-300 border border-slate-800">Git</span>
+            </div>
+          </div>
+
+          <!-- AR Details -->
+          <div id="exp-panel-ar" class="hidden lg:col-span-8 flat-card p-8 sm:p-10 rounded-3xl border border-slate-800 space-y-6">
+            <div>
+              <h3 class="text-2xl font-bold font-display text-white">Augmented Reality Developer <span class="text-cyan-400">@ AR Initiative</span></h3>
+              <div class="text-xs font-mono text-slate-400 mt-2">Project Lead • Kerala, India</div>
+            </div>
+            <p class="text-sm sm:text-base text-slate-200 leading-relaxed">Researched and built immersive WebAR experiences bringing static visual media to life using browser-native 3D graphics.</p>
+            <div class="space-y-2.5">
+              <div class="text-xs font-mono text-cyan-400 uppercase tracking-wider mb-2 font-bold">Key Deliverables:</div>
+              <div class="flex items-start gap-2 text-xs sm:text-sm text-slate-200"><span class="text-cyan-400 font-bold">✓</span><span>Developed an interactive AR Poster using AR.js and A-Frame for high-performance 3D object rendering in web browsers.</span></div>
+              <div class="flex items-start gap-2 text-xs sm:text-sm text-slate-200"><span class="text-cyan-400 font-bold">✓</span><span>Implemented QR-based markerless/marker interactions allowing seamless mobile camera scanning without installing standalone applications.</span></div>
+              <div class="flex items-start gap-2 text-xs sm:text-sm text-slate-200"><span class="text-cyan-400 font-bold">✓</span><span>Optimized 3D asset file sizes and asset loading times for immediate mobile browser responsiveness.</span></div>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="px-3 py-1 rounded-lg text-xs font-mono bg-slate-900 text-cyan-300 border border-slate-800">AR.js</span>
+              <span class="px-3 py-1 rounded-lg text-xs font-mono bg-slate-900 text-cyan-300 border border-slate-800">A-Frame</span>
+              <span class="px-3 py-1 rounded-lg text-xs font-mono bg-slate-900 text-cyan-300 border border-slate-800">JavaScript</span>
+              <span class="px-3 py-1 rounded-lg text-xs font-mono bg-slate-900 text-cyan-300 border border-slate-800">HTML5/CSS3</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="py-24 px-4 max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full flat-pill border border-slate-800 text-cyan-400 text-xs font-mono mb-3">
+            <span>03. FEATURED PROJECTS</span>
+          </div>
+          <h2 class="text-3xl sm:text-5xl font-bold font-display text-white tracking-tight">
+            Production Systems & <span class="text-cyan-400">Applications</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+          <!-- Project 1 -->
+          <div class="group flat-card flat-card-hover rounded-3xl overflow-hidden border border-slate-800 flex flex-col justify-between">
+            <div>
+              <div class="relative h-60 overflow-hidden bg-black">
+                <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=1000&q=80" alt="Blockchain Expense Tracker" class="w-full h-full object-cover opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300" />
+                <div class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-mono bg-[#030712] text-cyan-400 border border-cyan-500/40 font-bold">
+                  Full Stack / Blockchain
+                </div>
+              </div>
+              <div class="p-6 sm:p-8">
+                <h3 class="text-2xl font-bold font-display text-white group-hover:text-cyan-400 transition-colors mb-2">Blockchain Expense Tracker</h3>
+                <p class="text-sm text-slate-300 leading-relaxed mb-6">Immutable & transparent personal expense analytics powered by Django & Blockchain ledger logic.</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-900 text-cyan-300 border border-slate-800">Django</span>
+                  <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-900 text-cyan-300 border border-slate-800">Python</span>
+                  <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-900 text-cyan-300 border border-slate-800">Blockchain</span>
+                  <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-900 text-cyan-300 border border-slate-800">REST APIs</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="px-6 sm:px-8 pb-6 sm:pb-8 pt-0 flex justify-between items-center border-t border-slate-800 pt-4">
+              <button onclick="openProjectModal('proj-1')" class="text-xs font-mono text-cyan-400 font-bold hover:text-cyan-300">
+                Expand Details →
+              </button>
+              <a href="https://github.com/RGRTO" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl text-xs font-mono bg-black text-slate-200 hover:text-white border border-slate-800 hover:border-cyan-500/40 transition-colors">
+                GitHub Repo
+              </a>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="group flat-card flat-card-hover rounded-3xl overflow-hidden border border-slate-800 flex flex-col justify-between">
+            <div>
+              <div class="relative h-60 overflow-hidden bg-black">
+                <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?auto=format&fit=crop&w=1000&q=80" alt="Twitter Clone" class="w-full h-full object-cover opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300" />
+                <div class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-mono bg-[#030712] text-cyan-400 border border-cyan-500/40 font-bold">
+                  Full Stack Social App
+                </div>
+              </div>
+              <div class="p-6 sm:p-8">
+                <h3 class="text-2xl font-bold font-display text-white group-hover:text-cyan-400 transition-colors mb-2">Twitter Clone</h3>
+                <p class="text-sm text-slate-300 leading-relaxed mb-6">High-concurrency social networking platform featuring user feeds, instant likes, comments & follow loops.</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-900 text-cyan-300 border border-slate-800">Django</span>
+                  <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-900 text-cyan-300 border border-slate-800">REST APIs</span>
+                  <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-900 text-cyan-300 border border-slate-800">User Auth</span>
+                  <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-900 text-cyan-300 border border-slate-800">Follow System</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="px-6 sm:px-8 pb-6 sm:pb-8 pt-0 flex justify-between items-center border-t border-slate-800 pt-4">
+              <button onclick="openProjectModal('proj-2')" class="text-xs font-mono text-cyan-400 font-bold hover:text-cyan-300">
+                Expand Details →
+              </button>
+              <a href="https://github.com/RGRTO" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl text-xs font-mono bg-black text-slate-200 hover:text-white border border-slate-800 hover:border-cyan-500/40 transition-colors">
+                GitHub Repo
+              </a>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="group flat-card flat-card-hover rounded-3xl overflow-hidden border border-slate-800 flex flex-col justify-between">
+            <div>
+              <div class="relative h-60 overflow-hidden bg-black">
+                <img src="https://images.unsplash.com/photo-1556742049-0a67daf4005a?auto=format&fit=crop&w=1000&q=80" alt="E-Commerce Website" class="w-full h-full object-cover opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300" />
+                <div class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-mono bg-[#030712] text-cyan-400 border border-cyan-500/40 font-bold">
+                  Full Stack Web App
+                </div>
+              </div>
+              <div class="p-6 sm:p-8">
+                <h3 class="text-2xl font-bold font-display text-white group-hover:text-cyan-400 transition-colors mb-2">E-Commerce Website</h3>
+                <p class="text-sm text-slate-300 leading-relaxed mb-6">Complete online shopping ecosystem with cart management, product catalog, checkout & admin control.</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-900 text-cyan-300 border border-slate-800">Django</span>
+                  <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-900 text-cyan-300 border border-slate-800">Shopping Cart</span>
+                  <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-900 text-cyan-300 border border-slate-800">Catalog</span>
+                  <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-900 text-cyan-300 border border-slate-800">MySQL</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="px-6 sm:px-8 pb-6 sm:pb-8 pt-0 flex justify-between items-center border-t border-slate-800 pt-4">
+              <button onclick="openProjectModal('proj-3')" class="text-xs font-mono text-cyan-400 font-bold hover:text-cyan-300">
+                Expand Details →
+              </button>
+              <a href="https://github.com/RGRTO" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl text-xs font-mono bg-black text-slate-200 hover:text-white border border-slate-800 hover:border-cyan-500/40 transition-colors">
+                GitHub Repo
+              </a>
+            </div>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="group flat-card flat-card-hover rounded-3xl overflow-hidden border border-slate-800 flex flex-col justify-between">
+            <div>
+              <div class="relative h-60 overflow-hidden bg-black">
+                <img src="https://images.unsplash.com/photo-1622979135225-d2ba269bc1bd?auto=format&fit=crop&w=1000&q=80" alt="AR QR Poster" class="w-full h-full object-cover opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300" />
+                <div class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-mono bg-[#030712] text-cyan-400 border border-cyan-500/40 font-bold">
+                  Augmented Reality / Web
+                </div>
+              </div>
+              <div class="p-6 sm:p-8">
+                <h3 class="text-2xl font-bold font-display text-white group-hover:text-cyan-400 transition-colors mb-2">AR QR Poster</h3>
+                <p class="text-sm text-slate-300 leading-relaxed mb-6">Interactive WebAR application transforming physical posters into 3D interactive digital media.</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-900 text-cyan-300 border border-slate-800">AR.js</span>
+                  <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-900 text-cyan-300 border border-slate-800">A-Frame</span>
+                  <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-900 text-cyan-300 border border-slate-800">JavaScript</span>
+                  <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-900 text-cyan-300 border border-slate-800">WebAR</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="px-6 sm:px-8 pb-6 sm:pb-8 pt-0 flex justify-between items-center border-t border-slate-800 pt-4">
+              <button onclick="openProjectModal('proj-4')" class="text-xs font-mono text-cyan-400 font-bold hover:text-cyan-300">
+                Expand Details →
+              </button>
+              <a href="https://github.com/RGRTO" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl text-xs font-mono bg-black text-slate-200 hover:text-white border border-slate-800 hover:border-cyan-500/40 transition-colors">
+                GitHub Repo
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Skills Section -->
+      <section id="skills" class="py-24 px-4 max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full flat-pill border border-slate-800 text-cyan-400 text-xs font-mono mb-3">
+            <span>04. SKILLS & CAPABILITIES</span>
+          </div>
+          <h2 class="text-3xl sm:text-5xl font-bold font-display text-white tracking-tight">
+            Categorized <span class="text-cyan-400">Technical Stack</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <!-- Languages -->
+          <div class="flat-card flat-card-hover p-6 rounded-3xl border border-slate-800 space-y-4">
+            <h3 class="text-sm font-bold font-display text-cyan-400 uppercase font-mono tracking-wider">Languages</h3>
+            <div class="space-y-3">
+              <div><div class="flex justify-between text-xs mb-1"><span class="text-slate-200 font-medium">Python</span><span class="font-mono text-cyan-400 font-bold">92%</span></div><div class="w-full h-2 bg-black rounded-full overflow-hidden border border-slate-800"><div class="h-full bg-cyan-400 w-[92%]"></div></div></div>
+              <div><div class="flex justify-between text-xs mb-1"><span class="text-slate-200 font-medium">JavaScript</span><span class="font-mono text-cyan-400 font-bold">88%</span></div><div class="w-full h-2 bg-black rounded-full overflow-hidden border border-slate-800"><div class="h-full bg-cyan-400 w-[88%]"></div></div></div>
+              <div><div class="flex justify-between text-xs mb-1"><span class="text-slate-200 font-medium">Java</span><span class="font-mono text-cyan-400 font-bold">80%</span></div><div class="w-full h-2 bg-black rounded-full overflow-hidden border border-slate-800"><div class="h-full bg-cyan-400 w-[80%]"></div></div></div>
+              <div><div class="flex justify-between text-xs mb-1"><span class="text-slate-200 font-medium">C</span><span class="font-mono text-cyan-400 font-bold">75%</span></div><div class="w-full h-2 bg-black rounded-full overflow-hidden border border-slate-800"><div class="h-full bg-cyan-400 w-[75%]"></div></div></div>
+              <div><div class="flex justify-between text-xs mb-1"><span class="text-slate-200 font-medium">SQL</span><span class="font-mono text-cyan-400 font-bold">88%</span></div><div class="w-full h-2 bg-black rounded-full overflow-hidden border border-slate-800"><div class="h-full bg-cyan-400 w-[88%]"></div></div></div>
+              <div><div class="flex justify-between text-xs mb-1"><span class="text-slate-200 font-medium">HTML5 & CSS3</span><span class="font-mono text-cyan-400 font-bold">95%</span></div><div class="w-full h-2 bg-black rounded-full overflow-hidden border border-slate-800"><div class="h-full bg-cyan-400 w-[95%]"></div></div></div>
+            </div>
+          </div>
+
+          <!-- Frameworks -->
+          <div class="flat-card flat-card-hover p-6 rounded-3xl border border-slate-800 space-y-4">
+            <h3 class="text-sm font-bold font-display text-purple-400 uppercase font-mono tracking-wider">Frameworks</h3>
+            <div class="space-y-3">
+              <div><div class="flex justify-between text-xs mb-1"><span class="text-slate-200 font-medium">Django</span><span class="font-mono text-purple-400 font-bold">92%</span></div><div class="w-full h-2 bg-black rounded-full overflow-hidden border border-slate-800"><div class="h-full bg-purple-400 w-[92%]"></div></div></div>
+              <div><div class="flex justify-between text-xs mb-1"><span class="text-slate-200 font-medium">React</span><span class="font-mono text-purple-400 font-bold">85%</span></div><div class="w-full h-2 bg-black rounded-full overflow-hidden border border-slate-800"><div class="h-full bg-purple-400 w-[85%]"></div></div></div>
+              <div><div class="flex justify-between text-xs mb-1"><span class="text-slate-200 font-medium">FastAPI</span><span class="font-mono text-purple-400 font-bold">82%</span></div><div class="w-full h-2 bg-black rounded-full overflow-hidden border border-slate-800"><div class="h-full bg-purple-400 w-[82%]"></div></div></div>
+              <div><div class="flex justify-between text-xs mb-1"><span class="text-slate-200 font-medium">Django REST Framework</span><span class="font-mono text-purple-400 font-bold">90%</span></div><div class="w-full h-2 bg-black rounded-full overflow-hidden border border-slate-800"><div class="h-full bg-purple-400 w-[90%]"></div></div></div>
+            </div>
+          </div>
+
+          <!-- Databases & Tools -->
+          <div class="flat-card flat-card-hover p-6 rounded-3xl border border-slate-800 space-y-4">
+            <h3 class="text-sm font-bold font-display text-emerald-400 uppercase font-mono tracking-wider">Databases & Tools</h3>
+            <div class="space-y-3">
+              <div><div class="flex justify-between text-xs mb-1"><span class="text-slate-200 font-medium">MySQL</span><span class="font-mono text-emerald-400 font-bold">86%</span></div><div class="w-full h-2 bg-black rounded-full overflow-hidden border border-slate-800"><div class="h-full bg-emerald-400 w-[86%]"></div></div></div>
+              <div><div class="flex justify-between text-xs mb-1"><span class="text-slate-200 font-medium">SQLite</span><span class="font-mono text-emerald-400 font-bold">90%</span></div><div class="w-full h-2 bg-black rounded-full overflow-hidden border border-slate-800"><div class="h-full bg-emerald-400 w-[90%]"></div></div></div>
+              <div><div class="flex justify-between text-xs mb-1"><span class="text-slate-200 font-medium">Git & GitHub</span><span class="font-mono text-emerald-400 font-bold">92%</span></div><div class="w-full h-2 bg-black rounded-full overflow-hidden border border-slate-800"><div class="h-full bg-emerald-400 w-[92%]"></div></div></div>
+              <div><div class="flex justify-between text-xs mb-1"><span class="text-slate-200 font-medium">VS Code & Linux</span><span class="font-mono text-emerald-400 font-bold">90%</span></div><div class="w-full h-2 bg-black rounded-full overflow-hidden border border-slate-800"><div class="h-full bg-emerald-400 w-[90%]"></div></div></div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Education Section -->
+      <section id="education" class="py-24 px-4 max-w-4xl mx-auto">
+        <div class="flat-card p-8 sm:p-10 rounded-3xl border border-slate-800 text-center">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full flat-pill border border-purple-800 text-purple-300 text-xs font-mono mb-4">
+            <span>05. ACADEMIC FOUNDATION</span>
+          </div>
+          <h3 class="text-2xl sm:text-3xl font-bold font-display text-white">Bachelor of Computer Applications (Honours)</h3>
+          <p class="text-base text-slate-200 mt-2">DePaul Institute of Science and Technology • <span class="text-cyan-400 font-mono font-bold">CGPA 8.0 / 10</span></p>
+          <p class="text-xs font-mono text-slate-400 mt-1">2021 - 2024 • Kerala, India</p>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="py-24 px-4 max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full flat-pill border border-slate-800 text-cyan-400 text-xs font-mono mb-3">
+            <span>06. GET IN TOUCH</span>
+          </div>
+          <h2 class="text-3xl sm:text-5xl font-bold font-display text-white tracking-tight">
+            Let's <span class="text-cyan-400">Connect</span>
+          </h2>
+        </div>
+
+        <div class="flat-card p-8 sm:p-10 rounded-3xl border border-slate-800 text-center space-y-6">
+          <p class="text-base text-slate-200 max-w-xl mx-auto">Open for full-time Python Django Developer roles, full-stack software engineering projects, or technical inquiries.</p>
+          
+          <div class="flex flex-wrap justify-center gap-4 text-sm font-mono text-slate-200">
+            <span class="p-3 rounded-xl bg-black border border-slate-800">📧 nayannaveen2707@gmail.com</span>
+            <span class="p-3 rounded-xl bg-black border border-slate-800">📞 +91 7994066467</span>
+            <span class="p-3 rounded-xl bg-black border border-slate-800">📍 Kerala, India</span>
+          </div>
+
+          <div class="flex justify-center gap-4 pt-4">
+            <a href="https://github.com/RGRTO" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-xl text-xs font-mono bg-black text-white border border-slate-800 hover:border-cyan-500/40 transition-colors">GitHub Profile</a>
+            <a href="https://www.linkedin.com/in/nayan-naveen-3a8668318" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-xl text-xs font-mono bg-cyan-400 hover:bg-cyan-300 text-black font-bold shadow-lg shadow-cyan-950/50 transition-all hover:scale-105">LinkedIn Profile</a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-900 py-8 text-center text-xs font-mono text-slate-500 relative z-10">
+      Nayan Naveen © 2026 • Python Django Developer Portfolio
+    </footer>
+
+    <!-- Interactive Terminal Easter Egg Modal -->
+    <div id="terminal-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+      <div class="w-full max-w-2xl bg-black rounded-2xl border border-purple-800 overflow-hidden shadow-2xl font-mono text-xs text-green-400 p-4 space-y-3">
+        <div class="flex items-center justify-between border-b border-gray-800 pb-2 text-slate-400">
+          <span>~/$ python manage.py runserver --nayan</span>
+          <button onclick="toggleTerminalModal()" class="text-rose-400 hover:text-white">✕ Close</button>
+        </div>
+        <div class="space-y-1 text-slate-300">
+          <p><span class="text-cyan-400">nayan@dev:~$</span> System initialized. All Django REST endpoints active [200 OK].</p>
+          <p><span class="text-cyan-400">nayan@dev:~$</span> Type <span class="text-yellow-300">skills</span>, <span class="text-yellow-300">hire</span>, <span class="text-yellow-300">coffee</span>, or <span class="text-yellow-300">quote</span> below:</p>
+        </div>
+        <div id="terminal-output" class="text-purple-300 min-h-[60px] p-2 bg-slate-950 rounded border border-slate-900">
+          Ready for input...
+        </div>
+        <div class="flex items-center gap-2 pt-2 border-t border-gray-800">
+          <span class="text-cyan-400 font-bold">&gt;</span>
+          <input
+            id="terminal-input"
+            type="text"
+            placeholder="type 'skills' or 'hire' and hit Enter..."
+            onkeydown="handleTerminalCommand(event)"
+            class="w-full bg-transparent text-white focus:outline-none text-xs"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Command Palette Modal -->
+    <div id="cmd-palette-modal" class="hidden fixed inset-0 z-50 flex items-start justify-center pt-24 px-4 bg-black/90 backdrop-blur-md">
+      <div class="flat-card w-full max-w-md rounded-2xl border border-slate-800 p-5">
+        <div class="flex justify-between items-center pb-3 border-b border-slate-800 mb-3">
+          <span class="text-xs font-mono text-cyan-400 font-bold">Navigation Commands</span>
+          <button onclick="toggleCommandPalette()" class="text-xs font-mono text-slate-400 hover:text-white">ESC</button>
+        </div>
+        <div class="space-y-1 text-xs">
+          <a href="#about" onclick="toggleCommandPalette()" class="block p-3 rounded-xl hover:bg-slate-800 text-slate-200 font-mono">Jump to About Me</a>
+          <a href="#experience" onclick="toggleCommandPalette()" class="block p-3 rounded-xl hover:bg-slate-800 text-slate-200 font-mono">Jump to Experience</a>
+          <a href="#projects" onclick="toggleCommandPalette()" class="block p-3 rounded-xl hover:bg-slate-800 text-slate-200 font-mono">Jump to Projects</a>
+          <a href="#skills" onclick="toggleCommandPalette()" class="block p-3 rounded-xl hover:bg-slate-800 text-slate-200 font-mono">Jump to Skills</a>
+          <a href="#education" onclick="toggleCommandPalette()" class="block p-3 rounded-xl hover:bg-slate-800 text-slate-200 font-mono">Jump to Education</a>
+          <a href="#contact" onclick="toggleCommandPalette()" class="block p-3 rounded-xl hover:bg-slate-800 text-slate-200 font-mono">Jump to Contact</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resume Modal -->
+    <div id="resume-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+      <div class="flat-card w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl border border-slate-800 p-8 sm:p-10 relative">
+        <div class="flex justify-between items-center pb-4 border-b border-slate-800 mb-6">
+          <h3 class="text-xl font-bold font-display text-white">Curriculum Vitae</h3>
+          <div class="flex gap-2">
+            <button onclick="window.print()" class="px-4 py-2 rounded-xl text-xs font-mono bg-cyan-950 text-cyan-300 border border-cyan-800 hover:bg-cyan-900">Print PDF</button>
+            <button onclick="toggleResumeModal()" class="px-4 py-2 rounded-xl text-xs font-mono bg-black text-slate-400 hover:text-white">Close</button>
+          </div>
+        </div>
+
+        <div class="space-y-6 text-xs sm:text-sm text-slate-300 font-sans">
+          <div>
+            <h1 class="text-3xl font-bold font-display text-white">Nayan Naveen</h1>
+            <p class="text-cyan-400 font-mono text-xs mt-1">Python Django Developer | Full Stack Developer | AI & Cybersecurity Enthusiast</p>
+            <p class="text-slate-400 mt-2 font-mono text-xs">nayannaveen2707@gmail.com • +91 7994066467 • Kerala, India</p>
+          </div>
+
+          <div class="border-t border-slate-800 pt-4">
+            <h2 class="font-bold text-white uppercase font-mono text-xs mb-2">Education</h2>
+            <p class="font-bold text-slate-200">Bachelor of Computer Applications (Honours)</p>
+            <p class="text-slate-400">DePaul Institute of Science and Technology • CGPA 8.0 (2021 - 2024)</p>
+          </div>
+
+          <div class="border-t border-slate-800 pt-4">
+            <h2 class="font-bold text-white uppercase font-mono text-xs mb-2">Experience</h2>
+            <div class="mb-4">
+              <p class="font-bold text-slate-200">Python Django Developer Intern - Webandcrafts (2 Months)</p>
+              <p class="text-slate-400 text-xs mt-1">Engineered backend architecture for Blockchain Expense Tracker, Twitter Clone, and E-Commerce website. REST APIs, authentication, MySQL & SQLite.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-200">Augmented Reality Developer - Interactive AR Poster</p>
+              <p class="text-slate-400 text-xs mt-1">Built interactive WebAR poster using AR.js and A-Frame with QR code interactions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project Modals -->
+    <div id="proj-modal-1" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+      <div class="flat-card w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl border border-slate-800 p-8 relative">
+        <button onclick="closeProjectModal('proj-1')" class="absolute top-6 right-6 p-2 rounded-xl text-slate-400 hover:text-white bg-black border border-slate-800 font-mono text-xs">✕ Close</button>
+        <h3 class="text-3xl font-bold font-display text-white mb-2">Blockchain Expense Tracker</h3>
+        <p class="text-sm text-slate-300 leading-relaxed mb-6">A decentralized financial management platform designed to record financial transactions with cryptographic integrity. Includes interactive analytics dashboard, secure authentication, categorical budgeting, and immutable transaction logs.</p>
+        <div class="flex justify-end gap-3 pt-4 border-t border-slate-800">
+          <a href="https://github.com/RGRTO" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl text-xs font-mono bg-black text-slate-200 border border-slate-800">GitHub Source</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="proj-modal-2" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+      <div class="flat-card w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl border border-slate-800 p-8 relative">
+        <button onclick="closeProjectModal('proj-2')" class="absolute top-6 right-6 p-2 rounded-xl text-slate-400 hover:text-white bg-black border border-slate-800 font-mono text-xs">✕ Close</button>
+        <h3 class="text-3xl font-bold font-display text-white mb-2">Twitter Clone</h3>
+        <p class="text-sm text-slate-300 leading-relaxed mb-6">A feature-rich social web application inspired by Twitter/X. Engineered with Django backend architecture handling user relationships, media posts, timeline aggregation, follower systems, and real-time interaction feedback.</p>
+        <div class="flex justify-end gap-3 pt-4 border-t border-slate-800">
+          <a href="https://github.com/RGRTO" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl text-xs font-mono bg-black text-slate-200 border border-slate-800">GitHub Source</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="proj-modal-3" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+      <div class="flat-card w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl border border-slate-800 p-8 relative">
+        <button onclick="closeProjectModal('proj-3')" class="absolute top-6 right-6 p-2 rounded-xl text-slate-400 hover:text-white bg-black border border-slate-800 font-mono text-xs">✕ Close</button>
+        <h3 class="text-3xl font-bold font-display text-white mb-2">E-Commerce Website</h3>
+        <p class="text-sm text-slate-300 leading-relaxed mb-6">An end-to-end e-commerce platform featuring a dynamic product catalog, inventory management, user cart state persistence, checkout flows, and an extensive admin management dashboard.</p>
+        <div class="flex justify-end gap-3 pt-4 border-t border-slate-800">
+          <a href="https://github.com/RGRTO" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl text-xs font-mono bg-black text-slate-200 border border-slate-800">GitHub Source</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="proj-modal-4" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+      <div class="flat-card w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl border border-slate-800 p-8 relative">
+        <button onclick="closeProjectModal('proj-4')" class="absolute top-6 right-6 p-2 rounded-xl text-slate-400 hover:text-white bg-black border border-slate-800 font-mono text-xs">✕ Close</button>
+        <h3 class="text-3xl font-bold font-display text-white mb-2">AR QR Poster</h3>
+        <p class="text-sm text-slate-300 leading-relaxed mb-6">A WebAR project created using AR.js and A-Frame. Users scan a QR code on a physical poster to immediately trigger interactive 3D model renderings and audio-visual animations directly in their mobile browser without installing extra software.</p>
+        <div class="flex justify-end gap-3 pt-4 border-t border-slate-800">
+          <a href="https://github.com/RGRTO" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl text-xs font-mono bg-black text-slate-200 border border-slate-800">GitHub Source</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Standard Vanilla JS Logic -->
+    <script>
+      // Experience Tab Switcher
+      function switchExpTab(tab) {
+        const pWeb = document.getElementById('exp-panel-webandcrafts');
+        const pAr = document.getElementById('exp-panel-ar');
+        const bWeb = document.getElementById('exp-btn-webandcrafts');
+        const bAr = document.getElementById('exp-btn-ar');
+
+        if (tab === 'webandcrafts') {
+          pWeb.classList.remove('hidden');
+          pAr.classList.add('hidden');
+          bWeb.className = "w-full text-left p-5 rounded-2xl border transition-all bg-cyan-950/80 border-cyan-500 text-white";
+          bAr.className = "w-full text-left p-5 rounded-2xl border transition-all flat-card border-slate-800 text-slate-400 hover:text-white";
+        } else {
+          pAr.classList.remove('hidden');
+          pWeb.classList.add('hidden');
+          bAr.className = "w-full text-left p-5 rounded-2xl border transition-all bg-cyan-950/80 border-cyan-500 text-white";
+          bWeb.className = "w-full text-left p-5 rounded-2xl border transition-all flat-card border-slate-800 text-slate-400 hover:text-white";
+        }
+      }
+
+      // Fun High Five Interactive Counter
+      let highFiveCount = 42;
+      function giveHighFive() {
+        highFiveCount += 1;
+        document.getElementById('high-five-count').innerText = highFiveCount;
+        try {
+          confetti({ particleCount: 50, spread: 50, origin: { y: 0.7 } });
+        } catch(e){}
+      }
+
+      // Modals
+      function toggleCommandPalette() {
+        document.getElementById('cmd-palette-modal').classList.toggle('hidden');
+      }
+      function toggleResumeModal() {
+        document.getElementById('resume-modal').classList.toggle('hidden');
+      }
+      function toggleTerminalModal() {
+        document.getElementById('terminal-modal').classList.toggle('hidden');
+      }
+
+      // Interactive Secret Python Terminal
+      function handleTerminalCommand(e) {
+        if (e.key === 'Enter') {
+          const val = e.target.value.trim().toLowerCase();
+          const out = document.getElementById('terminal-output');
+          e.target.value = '';
+
+          if (val === 'skills') {
+            out.innerHTML = "<span class='text-cyan-400'>[STRENGTHS]</span> Python, Django, REST Framework, React, MySQL, AR.js, Cybersecurity";
+          } else if (val === 'hire') {
+            out.innerHTML = "<span class='text-emerald-400'>[RESULT]</span> Great choice! Email: nayannaveen2707@gmail.com | Phone: +91 7994066467";
+          } else if (val === 'coffee') {
+            out.innerHTML = "<span class='text-yellow-300'>[STATUS]</span> ☕ 100% Caffeine Levels. Ready to write clean Django code!";
+          } else if (val === 'quote') {
+            out.innerHTML = "<span class='text-purple-300'>\"Simple is better than complex.\" - The Zen of Python</span>";
+          } else {
+            out.innerHTML = `<span class='text-rose-400'>Command not recognized: '${val}'. Try: skills, hire, coffee, quote</span>`;
+          }
+        }
+      }
+
+      function openProjectModal(id) {
+        document.getElementById(id ? 'proj-modal-' + id.split('-')[1] : '').classList.remove('hidden');
+      }
+      function closeProjectModal(id) {
+        document.getElementById(id ? 'proj-modal-' + id.split('-')[1] : '').classList.add('hidden');
+      }
+
+      // Keyboard listener Ctrl+K
+      window.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+          e.preventDefault();
+          toggleCommandPalette();
+        }
+      });
+    </script>
+  </body>
+</html>
